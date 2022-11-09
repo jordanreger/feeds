@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, shrink-to-fit=no" />
+
+  <title>feeds</title>
+  <meta name="title" content="feeds">
+  <meta name="description" content="a very basic rss reader">
+
+  <!-- <link rel="shortcut icon" href="/logo.svg" />
+  <link rel="preload" as="image" href="/logo.svg"> -->
+
+  <link rel="stylesheet" href="/index.css" />
+
+  <script>
+    (async () => {
+      for(let i = 0; i < window.localStorage.length; i++) {
+        let rss_url = Object.keys(window.localStorage)[i];
+        const feed = await fetch(`/feed?url=${rss_url}`).then(res => res.text()).then(feed => { return feed }).catch((_) => { return true });
+        if(feed !== "Internal Server Error") {
+          window.localStorage.setItem(rss_url, feed);
+        }
+      }
+    })();
+  </script>
+
+</head>
+
+<script name="rss_input" type="module">
+  let LitElement, html, css;
+  import("https://esm.sh/lit").then(ex => {
+    LitElement = ex.LitElement, html = ex.html, css = ex.css;
+    class rss_input extends LitElement {
+      static styles = css`
+        `;
+
+      async handleSubmit(e) {
+        e.preventDefault();
+        let input = this.shadowRoot.children[0].children[0], rss_url = input.value;
+        if (rss_url) {
+          const feed = await fetch(`/feed?url=${rss_url}`).then(res => res.text()).then(feed => { return feed }).catch((_) => { return true });
+          
+          if(feed !== "Internal Server Error") {
+            window.localStorage.setItem(rss_url, feed);
+          }
+
+          input.value = "";
+          location.reload();
+        } else {
+          console.log("please input a valid URL");
+        }
+
+      }
+
+      render() {
+        return html`
+
+          <form @submit="${(e) => this.handleSubmit(e)}">
+            <input type="text" placeholder="enter your RSS URL" name="import" />
+          </form>
+
+        `;
+      }
+    }
+    customElements.get("rss-input") || customElements.define("rss-input", rss_input);
+  })
+</script>
+
+<script name="feed_list" type="module">
+  let LitElement, html, css, unsafeHTML;
+  import("https://esm.sh/lit/directives/unsafe-html").then(ex => {
+    unsafeHTML = ex.unsafeHTML;
+  }).then(() => {
+  import("https://esm.sh/lit").then(ex => {
+    LitElement = ex.LitElement, html = ex.html, css = ex.css;
+
+    class feed_list extends LitElement {
+      static styles = css`
+      a {
+        color: inherit;
+        text-decoration: underline;
+      }
+
+      a:hover {
+        color: #424242;
+        cursor: pointer;
+      }
+
+      header {
+        padding-bottom: 2vh;
+      }
+
+      article:not(:last-of-type) {
+        padding-bottom: 2vh;
+      }
+
+      article:not(:first-of-type) {
+        padding-top: 2vh;
+      }
+
+      .subtitle {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #212121;
+        padding-bottom: 1vh;
+      }
+
+      .body {
+        color: #212121;
+      }
+
+      .post_description video {
+        max-height: 25%;
+        max-width: 100%
+      }
+
+      .post_description img {
+        max-height: 25%;
+        max-width: 100%;
+      }
+
+      .post_description pre {
+        overflow: auto;
+      }
+
+      .post_description {
+        overflow: auto;
+      }
+      `;
+
+      get_feed_list() {
+        let feed_list_array = [];
+
+        for(let i = 0; i < window.localStorage.length; i++) {
+          let feed_entries = JSON.parse(Object.values(window.localStorage)[i]).entries;
+          feed_entries?.forEach(entry => {
+            feed_list_array.push(entry);
+          })
+        }
+
+        feed_list_array = feed_list_array.sort(function(a,b){
+          return new Date(b.published) - new Date(a.published);
+        });
+
+        let feed_list_display = [];
+
+        feed_list_array.forEach(feed => {
+          let post_url = feed.id;
+
+          let post_description;
+
+          if(typeof feed.description?.value !== "undefined"){
+            post_description = feed.description?.value;
+          } else if (typeof feed.content?.value !== "undefined") {
+            post_description = feed.content?.value;
+          } else {
+            post_description = null;
+          }
+          
+          // decode random things like brackets, apostrophes, etc.
+          function decodeHTML(html) {
+            let txt = document.createElement("textarea");
+            txt.innerHTML = html;
+            return txt.value;
+          }
+          post_description = decodeHTML(post_description);
+
+          // remove all html, head, and body tags for rendering
+          post_description = post_description?.replaceAll(/<html(.*?)>/gmis, "");
+          post_description = post_description?.replaceAll(/<\/html>/gmis, "");
+          post_description = post_description?.replaceAll(/<head(.*?)>(.*?)<\/head>/gmis, "");
+          post_description = post_description?.replaceAll(/<body(.*?)>/gmis, "");
+          post_description = post_description?.replaceAll(/<\/body>/gmis, "");
+
+          let post_image = ((typeof feed["media:content"] !== "undefined") ? feed["media:content"][0].url : null);
+          let post_date = new Date(feed.published);
+
+          const feed_html = html`
+          <article style="border: 1px solid black; margin-bottom: 2rem; padding: 1rem; overflow-wrap: break-word">
+            <div class="subtitle">> <a href="${post_url}">${post_url}</a></div>
+            <div class="body">
+              <b>at ${post_date}</b>
+              <br/>
+              <br/>
+              ${post_image !== null ? html`<img src="${post_image}" style="max-height: 25%; max-width: 100%" /><br/><br/>` : null}
+              <div class="post_description">${unsafeHTML(post_description)}</div>
+            </div>
+          </article>
+          `;
+
+          feed_list_display.push(feed_html);
+        })
+        return feed_list_display;
+      }
+
+      render() {
+        return html`
+          <article>
+              ${this.get_feed_list()}
+          </article>
+        `;
+      }
+    }
+
+    customElements.get("feed-list") || customElements.define("feed-list", feed_list);
+  })
+  })
+</script>
+
+<body>
+  <main>
+    <header>
+      <div class="subtitle" style="float: left">&#127965;</div>
+      <div class="subtitle" style="float: right; text-align: right;">feeds</div>
+      <div style="clear:both; user-select: none;"></div>
+    </header>
+    <article>
+      <div class="body">
+        feeds is a very basic rss reader. view the source on <a href="https://git.sr.ht/~jordanreger/feeds">sourcehut</a>.
+        <br/>
+        (for links that don't work, please add an issue to <a href="https://todo.sr.ht/~jordanreger/feeds" target="_blank">todo.sr.ht/~jordanreger/feeds</a>)
+        <br/>
+        <br/>
+        <rss-input></rss-input>
+      </div>
+    </article>
+    <hr />
+    <article>
+      <div class="subtitle">newest</div>
+      <br/>
+      <div class="body">
+        <feed-list></feed-list>
+      </div>
+    </article>
+  </main>
+</body>
+
+</html>
