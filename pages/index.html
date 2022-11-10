@@ -151,7 +151,7 @@
           let post_title;
 
           if(typeof feed.title !== "undefined") {
-            post_title = feed.title;
+            post_title = feed.title?.value;
           } else {
             post_title = post_url;
           }
