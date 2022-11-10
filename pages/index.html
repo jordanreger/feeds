@@ -148,6 +148,15 @@
         feed_list_array.forEach(feed => {
           let post_url = feed.id;
 
+          let post_title;
+
+          if(typeof feed.title !== "undefined") {
+            post_title = feed.title;
+          } else {
+            post_title = post_url;
+          }
+            
+
           let post_description;
 
           if(typeof feed.description?.value !== "undefined"){
@@ -178,7 +187,7 @@
 
           const feed_html = html`
           <article style="border: 1px solid black; margin-bottom: 2rem; padding: 1rem; overflow-wrap: break-word">
-            <div class="subtitle">> <a href="${post_url}">${post_url}</a></div>
+            <div class="subtitle">> <a href="${post_url}">${post_title}</a></div>
             <div class="body">
               <b>at ${post_date}</b>
               <br/>
