@@ -33,7 +33,22 @@
     LitElement = ex.LitElement, html = ex.html, css = ex.css;
     class rss_input extends LitElement {
       static styles = css`
-        `;
+        a {
+          color: inherit;
+          text-decoration: underline;
+        }
+
+        a:hover {
+          color: #424242;
+          cursor: pointer;
+        }
+          
+        .delete:hover {
+          text-decoration: underline;
+          cursor: pointer;
+          color: #424242;
+        }
+      `;
 
       async handleSubmit(e) {
         e.preventDefault();
@@ -53,13 +68,33 @@
 
       }
 
+      delete_feed(feed) {
+        localStorage.removeItem(feed);
+        location.reload();
+      }
+
+      get_feed_list() {
+        let feed_list = Object.keys(window.localStorage);
+        let feed_list_display = [];
+        feed_list.forEach(feed => {
+          console.log(feed);
+          feed_list_display.push(html`<p><a href="${feed}">${feed}</a> &#8212; <span @click="${(_) => { this.delete_feed(feed)}}" class="delete"><b>delete</b></span></p>`);
+        });
+        return feed_list_display;
+      }
+
       render() {
         return html`
 
           <form @submit="${(e) => this.handleSubmit(e)}">
             <input type="text" placeholder="enter your RSS URL" name="import" />
           </form>
-
+          <br/>
+          <br/>
+          <details>
+            <summary>your feeds</summary>
+            <div>${this.get_feed_list()}</div>
+          </detail>
         `;
       }
     }
@@ -147,18 +182,17 @@
 
         feed_list_array.forEach(feed => {
           let post_url = feed.id;
-
           let post_title;
+          let post_description;
 
+          // set feed title
           if(typeof feed.title !== "undefined") {
             post_title = feed.title?.value;
           } else {
             post_title = post_url;
           }
-            
 
-          let post_description;
-
+          //set feed content
           if(typeof feed.description?.value !== "undefined"){
             post_description = feed.description?.value;
           } else if (typeof feed.content?.value !== "undefined") {
@@ -187,13 +221,16 @@
 
           const feed_html = html`
           <article style="border: 1px solid black; margin-bottom: 2rem; padding: 1rem; overflow-wrap: break-word">
-            <div class="subtitle">> <a href="${post_url}">${post_title}</a></div>
+            <div class="subtitle">${post_title}</div>
             <div class="body">
               <b>at ${post_date}</b>
               <br/>
               <br/>
               ${post_image !== null ? html`<img src="${post_image}" style="max-height: 25%; max-width: 100%" /><br/><br/>` : null}
               <div class="post_description">${unsafeHTML(post_description)}</div>
+              <br/>
+              <br/>
+              <b>[<a href="${post_url}">${post_url}</a>]</b>
             </div>
           </article>
           `;
@@ -236,7 +273,10 @@
     </article>
     <hr />
     <article>
-      <div class="subtitle">newest</div>
+      <div style="padding-bottom: 4vh">
+        <div class="subtitle" style="float: left">newest</div>
+        <div class="body" style="float: right; text-decoration: underline; cursor: pointer" onclick="location.reload()">refresh</div>
+      </div>
       <br/>
       <div class="body">
         <feed-list></feed-list>
