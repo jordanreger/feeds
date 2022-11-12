@@ -77,7 +77,6 @@
         let feed_list = Object.keys(window.localStorage);
         let feed_list_display = [];
         feed_list.forEach(feed => {
-          console.log(feed);
           feed_list_display.push(html`<p><a href="${feed}">${feed}</a> &#8212; <span @click="${(_) => { this.delete_feed(feed)}}" class="delete"><b>delete</b></span></p>`);
         });
         return feed_list_display;
@@ -180,7 +179,7 @@
 
         let feed_list_display = [];
 
-        feed_list_array.forEach(feed => {
+        for(const feed of feed_list_array) {
           let post_url = feed.id;
           let post_title;
           let post_description;
@@ -235,9 +234,14 @@
           </article>
           `;
 
-          feed_list_display.push(feed_html);
-        })
+          if(feed_list_display.length <= 19){
+            feed_list_display.push(feed_html);
+          }
+
+        }
+
         return feed_list_display;
+
       }
 
       render() {
@@ -280,6 +284,7 @@
       <br/>
       <div class="body">
         <feed-list></feed-list>
+        you've reached the end of your feed. currently, we only show the latest 20 posts.
       </div>
     </article>
   </main>
