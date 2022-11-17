@@ -18,4 +18,4 @@ tasks:
         set -x
         DENO_INSTALL="/home/build/.deno"
         PATH="$DENO_INSTALL/bin:$PATH"
-        deployctl deploy --project=feedsland ./feeds/main.ts --token=$DEPLOY_TOKEN --prod
+        deployctl deploy --project=feedsland ./feeds/main.ts --import-map=import_map.json --token=$DEPLOY_TOKEN --prod

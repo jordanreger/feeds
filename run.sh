@@ -1,1 +1,0 @@
-deno run -A --unstable --watch=. main.ts localhost
