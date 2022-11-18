@@ -1,6 +1,6 @@
 import { Head } from "$fresh/runtime.ts";
-import InputBar from "../islands/InputBar.tsx";
-import FeedList from "../islands/FeedList.tsx";
+import InputBar from "../islands/InputBar.jsx";
+import FeedList from "../islands/FeedList.jsx";
 
 export default function Home() {
   return (
