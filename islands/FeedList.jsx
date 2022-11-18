@@ -78,7 +78,7 @@ function get_feed_list() {
     <article style="border: 1px solid white; margin-bottom: 2rem; padding: 1rem; overflow-wrap: break-word">
       <div class="subtitle" style="font-size: 1.25rem">{post_title}</div>
       <div class="body">
-        <b>{arvelie_date} ({post_date})</b>
+        <b><span title={post_date}>{arvelie_date}</span></b>
         <br/>
         <br/>
         {post_image !== null ? <img src={post_image} style="max-height: 25%; max-width 100%;" /> : null}
