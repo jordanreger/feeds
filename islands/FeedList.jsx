@@ -1,9 +1,11 @@
 (async () => {
-  for(let i = 0; i < window.localStorage.length; i++) {
-    let rss_url = Object.keys(window.localStorage)[i];
-    const feed = await fetch(`/feed?url=${rss_url}`).then(res => res.text()).then(feed => { return feed }).catch((_) => { return true });
-    if(feed !== "Internal Server Error") {
-      window.localStorage.setItem(rss_url, feed);
+  if(window.localStorage !== undefined) {
+    for(let i = 0; i < window.localStorage?.length; i++) {
+      let rss_url = Object.keys(window.localStorage || {})[i];
+      const feed = await fetch(`/feed?url=${rss_url}`).then(res => res.text()).then(feed => { return feed }).catch((_) => { return true });
+      if(feed !== "Internal Server Error") {
+        window.localStorage?.setItem(rss_url, feed);
+      }
     }
   }
 })();
