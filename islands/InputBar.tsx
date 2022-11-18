@@ -22,7 +22,7 @@ function delete_feed(feed) {
 }
 
 function get_feed_list() {
-  let feed_list = Object.keys(window.localStorage);
+  let feed_list = Object.keys(window.localStorage || {});
   let feed_list_display = [];
   if(feed_list !== undefined && feed_list !== null) {
     feed_list.forEach(feed => {
