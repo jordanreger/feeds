@@ -1,11 +1,13 @@
 function get_feed_list() {
   let feed_list_array = [];
 
-  for(let i = 0; i < window.localStorage.length; i++) {
-    let feed_entries = JSON.parse(Object.values(window.localStorage)[i]).entries;
-    feed_entries?.forEach(entry => {
-      feed_list_array.push(entry);
-    })
+  if(window.localStorage !== undefined) {
+    for(let i = 0; i < window.localStorage.length; i++) {
+      let feed_entries = JSON.parse(Object.values(window.localStorage)[i]).entries;
+      feed_entries?.forEach(entry => {
+        feed_list_array.push(entry);
+      })
+    }
   }
 
   feed_list_array = feed_list_array.sort(function(a,b){
