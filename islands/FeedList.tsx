@@ -22,7 +22,7 @@ function get_feed_list() {
     let post_description;
 
     // set feed title
-    if(typeof feed.title !== "undefined") {
+    if(typeof feed.title !== undefined && feed.title !== null) {
       post_title = feed.title?.value;
     } else {
       post_title = post_url;
@@ -52,7 +52,7 @@ function get_feed_list() {
     post_description = post_description?.replaceAll(/<body(.*?)>/gmis, "");
     post_description = post_description?.replaceAll(/<\/body>/gmis, "");
 
-    let post_image = ((typeof feed["media:content"] !== "undefined") ? feed["media:content"][0].url : null);
+    let post_image = ((typeof feed["media:content"] !== undefined && feed["media:content"] !== null) ? feed["media:content"][0].url : null);
     let post_date = String(new Date(feed.published));
 
     function get0x7d0date() {
