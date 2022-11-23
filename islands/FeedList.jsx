@@ -87,7 +87,7 @@ function get_feed_list() {
     const arvelie_date = get0x7d0date();
 
     const feed_html = (
-    <article style="border: 1px solid white; margin-bottom: 2rem; padding: 1rem; overflow-wrap: break-word">
+    <article style="border: 1px solid black; margin-bottom: 2rem; padding: 1rem; overflow-wrap: break-word">
       <div class="subtitle" style="font-size: 1.25rem">{post_title}</div>
       <div class="body">
         <b><span title={post_date}>{arvelie_date}</span></b>
