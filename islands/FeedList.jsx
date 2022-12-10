@@ -5,6 +5,8 @@
       const feed = await fetch(`/feed?url=${rss_url}`).then(res => res.text()).then(feed => { return feed }).catch((_) => { return true });
       if(feed !== "Internal Server Error") {
         window.localStorage?.setItem(rss_url, feed);
+      } else {
+        window.localStorage?.setItem(rss_url, "");
       }
     }
   }
