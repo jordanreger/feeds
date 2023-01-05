@@ -10,7 +10,7 @@ export default function Home() {
         <meta name="title" content="feeds" />
         <meta name="description" content="a very basic rss reader" />
 
-        <link rel="stylesheet" href="https://jordanreger.com/resources/index.css" />
+        <link rel="stylesheet" href="https://localpub.deno.dev/index.css" />
       </Head>
       <body>
         <main>
