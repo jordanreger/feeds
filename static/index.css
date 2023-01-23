@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Emoji&display=swap');
+
+html {
+  font-family: Inter;
+  background-color: #101010;
+  color: #e0e0e0;
+}
+
+body {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75%;
+  margin: 2rem auto;
+}
+
+a {
+  color: #ffe551;
+}
+
+img {
+  object-fit: cover;
+  max-width: 100%;
+  max-height: 50vh;
+}
+
+.body article {
+  border: 1px solid #d0d0d0;
+  background-color: #212121;
+  border-radius: 15px;
+}
+
+main {
+  margin-bottom: 2rem;
+}
+
+details {
+  user-select: none;
+}
+
+.delete {
+  cursor: pointer;
+}
+
+footer {
+  margin-top: 2rem;
+}

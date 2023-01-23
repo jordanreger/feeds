@@ -10,22 +10,16 @@ export default function Home() {
         <meta name="title" content="feeds" />
         <meta name="description" content="a very basic rss reader" />
 
-        <link rel="stylesheet" href="https://localpub.deno.dev/index.css" />
+        <link rel="stylesheet" href="/index.css" />
       </Head>
       <body>
         <main>
           <header>
-            <pre class="title">
-{"   "}_______________  ____<br/>
-{"  "}/ __/ __/ __/ _ \/ __/<br/>
-{" "}/ _// _// _// // /\ \<br/>
-{""}/_/ /___/___/____/___/</pre>
+            <h1>feeds</h1>
           </header>
           <article>
             <div class="body">
-              feeds is a very basic rss reader. view the source on <a href="https://git.sr.ht/~jordanreger/feeds">sourcehut</a>.
-              <br/>
-              (for links that don't work, please add an issue to <a href="https://todo.sr.ht/~jordanreger/feeds" target="_blank">todo.sr.ht/~jordanreger/feeds</a>)
+              a very basic feed reader. read about <a href="https://jordanreger.com/Why-RSS-still-matters-5093a8e7d2944f00ad2dc24ad52f7df1">why rss still matters</a>.
               <br/>
               <br/>
               <InputBar></InputBar>
@@ -34,15 +28,18 @@ export default function Home() {
           <hr />
           <article>
             <div style="padding-bottom: 4vh">
-              <div class="subtitle" style="float: left">newest</div>
+              <div class="subtitle" style="float: left"><b>newest</b></div>
               <div class="body" style="float: right; text-decoration: underline; cursor: pointer" onclick="location.reload()">refresh</div>
             </div>
             <br/>
             <div class="body">
               <FeedList></FeedList>
-              you've reached the end of your feed. currently, we only show the latest 20 posts.
+              <i>you've reached the end of your feed. currently, we only show the latest 20 posts.</i>
             </div>
           </article>
+          <footer>
+            built by <a href="https://2jr.co">jordan reger</a>
+          </footer>
         </main>
       </body>
     </>

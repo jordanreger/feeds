@@ -1,7 +1,7 @@
 (async () => {
   if(window.localStorage !== undefined) {
     for(let i = 0; i < window.localStorage?.length; i++) {
-      let rss_url = Object.keys(window.localStorage || {})[i];
+      const rss_url = Object.keys(window.localStorage || {})[i];
       const feed = await fetch(`/feed?url=${rss_url}`).then(res => res.text()).then(feed => { return feed }).catch((_) => { return true });
       if(feed !== "Internal Server Error") {
         window.localStorage?.setItem(rss_url, feed);
@@ -17,7 +17,7 @@ function get_feed_list() {
 
   if(window.localStorage !== undefined) {
     for(let i = 0; i < window.localStorage.length; i++) {
-      let feed_entries = JSON.parse(Object.values(window.localStorage)[i]).entries;
+      const feed_entries = JSON.parse(Object.values(window.localStorage)[i]).entries;
       feed_entries?.forEach(entry => {
         feed_list_array.push(entry);
       })
@@ -28,10 +28,11 @@ function get_feed_list() {
     return new Date(b.published) - new Date(a.published);
   });
 
-  let feed_list_display = [];
+  const feed_list_display = [];
 
   for(const feed of feed_list_array) {
-    let post_url = feed.id;
+    console.log(feed);
+    const post_url = feed.id;
     let post_title;
     let post_description;
 
@@ -43,10 +44,10 @@ function get_feed_list() {
     }
 
     //set feed content
-    if(typeof feed.description?.value !== "undefined"){
-      post_description = feed.description?.value;
-    } else if (typeof feed.content?.value !== "undefined") {
+    if (typeof feed.content?.value !== "undefined") {
       post_description = feed.content?.value;
+    } else if (typeof feed.description?.value !== "undefined"){
+      post_description = feed.description?.value;
     } else {
       post_description = null;
     }
@@ -89,13 +90,13 @@ function get_feed_list() {
     const arvelie_date = get0x7d0date();
 
     const feed_html = (
-    <article style="border: 1px solid black; margin-bottom: 2rem; padding: 1rem; overflow-wrap: break-word">
+    <article style="margin-bottom: 2rem; padding: 1rem; overflow-wrap: break-word">
       <div class="subtitle" style="font-size: 1.25rem">{post_title}</div>
       <div class="body">
         <b><span title={post_date}>{arvelie_date}</span></b>
         <br/>
         <br/>
-        {post_image !== null ? <img src={post_image} style="max-height: 25%; max-width 100%;" /> : null}
+        {post_image !== null ? <img src={post_image} /> : null}
         <div class="post_description" dangerouslySetInnerHTML={{__html: post_description}}></div>
         <b>[<a href={post_url}>{post_url}</a>]</b>
       </div>
