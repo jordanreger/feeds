@@ -19,7 +19,9 @@ export default function Home() {
           </header>
           <article>
             <div class="body">
-              a very basic feed reader. read about <a href="https://jordanreger.com/Why-RSS-still-matters-5093a8e7d2944f00ad2dc24ad52f7df1">why rss still matters</a>.
+              a very basic feed reader.
+              read about <a href="https://jordanreger.com/Why-RSS-still-matters-5093a8e7d2944f00ad2dc24ad52f7df1">why rss still matters</a>.
+              view the <a href="https://github.com/jordanreger/feeds">source</a>.
               <br/>
               <br/>
               <InputBar></InputBar>
