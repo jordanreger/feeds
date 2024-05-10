@@ -24,7 +24,7 @@
   <p>Feeds:</p>
   <ul>
     {{range .}}
-    <li><a href="/xrpc/app.bsky.feed.describeFeedGenerator?feed={{.URI}}"><code>{{.URI}}</code></a></li>
+    <li><a href="/xrpc/app.bsky.feed.getFeedSkeleton?feed={{.URI}}"><code>{{.URI}}</code></a></li>
     {{end}}
   </ul>
 </body>
