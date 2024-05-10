@@ -9,7 +9,6 @@ require (
 )
 
 require (
-	jordanreger.com/bsky v0.0.0-20240508153704-fe259470af7d // indirect
-	jordanreger.com/bsky/api v0.0.0-20240509203544-a86c08d9e95a // indirect
-	jordanreger.com/bsky/util v0.0.0-20240508231046-0413e632a573 // indirect
+	jordanreger.com/bsky/api v0.0.0-20240502184306-5d4d98343818 // indirect
+	jordanreger.com/bsky/util v0.0.0-20240508162802-a227d9bb3da7 // indirect
 )
