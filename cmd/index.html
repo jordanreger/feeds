@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    :root {
+      color-scheme: light dark;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>feeds</h1>
+  <p>Source: <a href="https://git.sr.ht/~jordanreger/feeds">git.sr.ht/~jordanreger/feeds</a></p>
+
+  <h2>Paths</h2>
+  <p>Static endpoints:</p>
+  <ul>
+    <li><a href="/.well-known/did.json"><code>/.well-known/did.json</code></a></li>
+    <li><a href="/xrpc/app.bsky.feed.describeFeedGenerator"><code>/xrpc/app.bsky.feed.describeFeedGenerator</code></a>
+    </li>
+  </ul>
+
+  <p>Feeds:</p>
+  <ul>
+    {{range .}}
+    <li><a href="/xrpc/app.bsky.feed.describeFeedGenerator?feed={{.URI}}"><code>{{.URI}}</code></a></li>
+    {{end}}
+  </ul>
+</body>
+
+</html>
