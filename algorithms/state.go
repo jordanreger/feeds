@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	bsky "jordanreger.com/bsky/api"
+	"jordanreger.com/bsky"
 	"jordanreger.com/bsky/feeds"
 	"net/http"
 	"slices"

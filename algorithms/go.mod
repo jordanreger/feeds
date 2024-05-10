@@ -3,7 +3,7 @@ module jordanreger.com/bsky/feeds/algorithms
 go 1.22.1
 
 require (
-	jordanreger.com/bsky/api v0.0.0-20240509203544-a86c08d9e95a
+	jordanreger.com/bsky v0.0.0-20240510170850-b67a96fdf40a
 	jordanreger.com/bsky/feeds v0.0.0-20240508231046-0413e632a573
 )
 
