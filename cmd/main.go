@@ -9,8 +9,8 @@ import (
 	"net/http"
 	"strings"
 
-	"jordanreger.com/bsky/feeds"
-	"jordanreger.com/bsky/feeds/algorithms"
+	"jordanreger.com/feeds"
+	"jordanreger.com/feeds/algorithms"
 	"jordanreger.com/web/util"
 )
 
@@ -84,7 +84,7 @@ func main() {
 		var fl []feeds.Feed
 
 		for _, state := range states {
-			fl = append(fl, feeds.Feed{URI: "at://" + did + "/app.bsky.feed.generator/" + state + "wx"})
+			fl = append(fl, feeds.Feed{URI: "at://" + did + "/app.bsky.feed.generator/" + state + "wx", Name: "#" + strings.ToUpper(state) + "WX"})
 		}
 
 		t := template.Must(template.New("index").Parse(index))
