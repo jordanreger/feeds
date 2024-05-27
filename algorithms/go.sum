@@ -1,0 +1,6 @@
+jordanreger.com/bsky v0.0.0-20240523194006-e3e58066e4fb h1:KIjpWa1RToPI2UoGwY7/1NPmJD+2beAmKHEF3bwwVpI=
+jordanreger.com/bsky v0.0.0-20240523194006-e3e58066e4fb/go.mod h1:i306xh7szpho8mJBAP7z7zR8+OjH74dvhEXv6ReGdNY=
+jordanreger.com/bsky/util v0.0.0-20240508231046-0413e632a573 h1:LCdRBHq3+1z6Y9STkUsAlZj+VdzSysGe3ahPbMZLnP0=
+jordanreger.com/bsky/util v0.0.0-20240508231046-0413e632a573/go.mod h1:qGCb++h6UadQVB7GcWjxd9EpOSPNA0Jf16FUkpxXK48=
+jordanreger.com/feeds v0.0.0-20240527180035-04db90b99d1f h1:4TmIfvSOnV2iqv24Sgx9WOTsYK+S3bQ+iI2Uu39Ad2k=
+jordanreger.com/feeds v0.0.0-20240527180035-04db90b99d1f/go.mod h1:JAxN7+A9m3qspNy3MChcAA8VL9vRiQDnzwAoV95ro4A=

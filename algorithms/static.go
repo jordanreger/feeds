@@ -1,7 +1,7 @@
 package algorithms
 
 import (
-	"jordanreger.com/bsky/feeds"
+	"jordanreger.com/feeds"
 )
 
 func Static() []feeds.Post {

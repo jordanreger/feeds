@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"io"
 	"jordanreger.com/bsky"
-	"jordanreger.com/bsky/feeds"
+	"jordanreger.com/feeds"
 	"net/http"
 	"slices"
 )
