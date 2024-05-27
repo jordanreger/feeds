@@ -5,7 +5,8 @@ import (
 )
 
 type Feed struct {
-	URI string `json:"uri"`
+	URI  string `json:"uri"`
+	Name string `json:"name,omitempty"`
 }
 
 type Post struct {
