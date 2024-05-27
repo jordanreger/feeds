@@ -6,31 +6,53 @@
     :root {
       color-scheme: light dark;
     }
+
+    #feeds li {
+      text-transform: uppercase;
+    }
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
   <h1>feeds</h1>
-  <p>Source: <a href="https://sr.ht/~jordanreger/feeds">sr.ht/~jordanreger/feeds</a></p>
 
-  <p>View the feeds on my account: <a
-      href="https://bsky.app/profile/did:plc:27rjcwbur2bizjjx3zakeme5">@jordanreger.com</a></p>
+  <p>A list of all feeds containing the hashtag #StateWX.</p>
 
-  <h2>Paths</h2>
-  <p>Static endpoints:</p>
-  <ul>
-    <li><a href="/.well-known/did.json"><code>/.well-known/did.json</code></a></li>
-    <li><a href="/xrpc/app.bsky.feed.describeFeedGenerator"><code>/xrpc/app.bsky.feed.describeFeedGenerator</code></a>
-    </li>
-  </ul>
-
-  <p>Feeds:</p>
-  <ul>
+  <ul id="feeds">
     {{range .}}
-    <li><a href="/xrpc/app.bsky.feed.getFeedSkeleton?feed={{.URI}}"><code>{{.Name}}</code></a></li>
+    <li><a href="https://bsky.app/profile/did:plc:27rjcwbur2bizjjx3zakeme5/feed/{{.Name}}">{{.Name}}</a>
+    </li>
     {{end}}
   </ul>
+
+  <details>
+    <summary>Server info</summary>
+
+    <h2>About</h2>
+
+    <p>Source: <a href="https://sr.ht/~jordanreger/feeds">sr.ht/~jordanreger/feeds</a></p>
+
+    <h2>Contributing</h2>
+
+    <p>Send patches/bug reports to <a
+        href="mailto:~jordanreger/feeds-devel@lists.sr.ht">~jordanreger/feeds-devel@lists.sr.ht</a></p>
+
+    <h2>Paths</h2>
+    <p>Static endpoints:</p>
+    <ul>
+      <li><a href="/.well-known/did.json"><code>/.well-known/did.json</code></a></li>
+      <li><a href="/xrpc/app.bsky.feed.describeFeedGenerator"><code>/xrpc/app.bsky.feed.describeFeedGenerator</code></a>
+      </li>
+    </ul>
+
+    <p>Feeds:</p>
+    <ul>
+      {{range .}}
+      <li><a href="/xrpc/app.bsky.feed.getFeedSkeleton?feed={{.URI}}"><code>{{.URI}}</code></a></li>
+      {{end}}
+    </ul>
+  </details>
 </body>
 
 </html>

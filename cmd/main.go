@@ -83,7 +83,7 @@ func main() {
 		var fl []feeds.Feed
 
 		for _, state := range states {
-			fl = append(fl, feeds.Feed{URI: "at://" + did + "/app.bsky.feed.generator/" + state + "wx", Name: "#" + strings.ToUpper(state) + "WX"})
+			fl = append(fl, feeds.Feed{URI: "at://" + did + "/app.bsky.feed.generator/" + state + "wx", Name: state + "wx"})
 		}
 
 		t := template.Must(template.New("index").Parse(index))
