@@ -4,9 +4,9 @@ import (
 	"bytes"
 	_ "embed"
 	"fmt"
+	"git.sr.ht/~jordanreger/feeds/algorithms"
 	"html/template"
 	"jordanreger.com/feeds"
-	//"jordanreger.com/feeds/algorithms"
 	"jordanreger.com/web/util"
 	"log"
 	"net/http"
@@ -52,20 +52,20 @@ func main() {
 			fmt.Fprint(w, `{"error": "feed not found"}`)
 			return
 		}
-		//uri_split := strings.Split(uri, "/")
-		//feed_name := strings.Replace(uri_split[len(uri_split)-1], "wx", "", 1)
-		//record_type := uri_split[len(uri_split)-2]
-		//request_did := uri_split[len(uri_split)-3]
+		uri_split := strings.Split(uri, "/")
+		feed_name := strings.Replace(uri_split[len(uri_split)-1], "wx", "", 1)
+		record_type := uri_split[len(uri_split)-2]
+		request_did := uri_split[len(uri_split)-3]
 
 		var feed []feeds.Post
 
-		//feed, err := algorithms.State(feed_name)
+		feed, err := algorithms.State(feed_name)
 
 		// no feed or incorrect request
-		/*if err != nil || record_type != "app.bsky.feed.generator" || request_did != did {
+		if err != nil || record_type != "app.bsky.feed.generator" || request_did != did {
 			fmt.Fprint(w, `{"error": "feed not found"}`)
 			return
-		}*/
+		}
 
 		fmt.Fprint(w, feeds.GetFeedSkeleton(feed))
 		return
