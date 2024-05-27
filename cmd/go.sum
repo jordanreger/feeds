@@ -1,8 +1,4 @@
-jordanreger.com/bsky v0.0.0-20240523194006-e3e58066e4fb h1:KIjpWa1RToPI2UoGwY7/1NPmJD+2beAmKHEF3bwwVpI=
-jordanreger.com/bsky v0.0.0-20240523194006-e3e58066e4fb/go.mod h1:i306xh7szpho8mJBAP7z7zR8+OjH74dvhEXv6ReGdNY=
-jordanreger.com/bsky/util v0.0.0-20240508231046-0413e632a573 h1:LCdRBHq3+1z6Y9STkUsAlZj+VdzSysGe3ahPbMZLnP0=
-jordanreger.com/bsky/util v0.0.0-20240508231046-0413e632a573/go.mod h1:qGCb++h6UadQVB7GcWjxd9EpOSPNA0Jf16FUkpxXK48=
-jordanreger.com/feeds v0.0.0-20240527180035-04db90b99d1f h1:4TmIfvSOnV2iqv24Sgx9WOTsYK+S3bQ+iI2Uu39Ad2k=
-jordanreger.com/feeds v0.0.0-20240527180035-04db90b99d1f/go.mod h1:JAxN7+A9m3qspNy3MChcAA8VL9vRiQDnzwAoV95ro4A=
+jordanreger.com/feeds v0.0.0-20240527181958-ffc70f361a98 h1:JFDLOQDUvUxGirB1rnx/5RR1xayl8xUNSLdgfsh0QpQ=
+jordanreger.com/feeds v0.0.0-20240527181958-ffc70f361a98/go.mod h1:JAxN7+A9m3qspNy3MChcAA8VL9vRiQDnzwAoV95ro4A=
 jordanreger.com/web/util v0.0.0-20240510173259-62bf28984fa9 h1:D1DvCOZ4tCdNFad/nd9HmzhrQXZ2BoQrdN/JZjcn3Us=
 jordanreger.com/web/util v0.0.0-20240510173259-62bf28984fa9/go.mod h1:+2ErdTqoaCN4VVn2DYTiUWXLA2Bm7eDH9E50vmJnsGc=
