@@ -1,4 +1,4 @@
-module jordanreger.com/feeds/algorithms
+module git.sr.ht/~jordanreger/feeds/algorithms
 
 go 1.22.1
 
